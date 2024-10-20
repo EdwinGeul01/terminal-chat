@@ -35,6 +35,8 @@ function connectToServer(IpRoom: string = "localhost") {
     terminal.terminal.moveTo(2, posyInit + i).blue(terminal.last10Messages[i]);
   }
 
+  terminal.terminal.moveTo(terminal.cursorX, terminal.cursorY).white(terminal.text);
+
   });
 
   // Manejar la desconexión
