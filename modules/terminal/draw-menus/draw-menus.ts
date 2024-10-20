@@ -1,6 +1,7 @@
 import { Terminal } from "terminal-kit";
 import { EterminalStatus, terminalStatus } from "../global/status";
 import terminal from "../terminal";
+import ip from "ip";
 
 /**
  * Draw the main menu
@@ -36,30 +37,28 @@ function drawMainMenu() {
 }
 
 function drawChatLog() {
+  const localIp = ip.address();
+
   terminal.white("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
   terminal.white("┃                                       ┃\n");
   terminal.white("┃  Welcome to the terminal chat app     ┃\n");
-  terminal.white("┃  Your Ip is:                          ┃\n");
   terminal.white("┃                                       ┃\n");
   terminal.white("└───────────────────────────────────────┘\n");
-
-  terminal.white(
-    "\n┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
-  );
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("┃                                                                                               ┃\n");
-  terminal.white("└───────────────────────────────────────────────────────────────────────────────────────────────┘\n");
+  terminal.white("Your Ip is: " + localIp + "          \n");
+  terminal.white("\n┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("┃                                                                                          ┃\n");
+  terminal.white("└──────────────────────────────────────────────────────────────────────────────────────────┘\n");
 }
 
 export { drawMainMenu, drawChatLog };
