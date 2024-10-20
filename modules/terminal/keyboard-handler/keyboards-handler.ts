@@ -4,20 +4,21 @@ import { eraseText } from "./logic/erase-text";
 import { quitApp } from "./logic/quit-app";
 import { sendMsg } from "./logic/send-msg";
 
+// activa las escuchas  de acciones del teclado
 function keyboardHandler() {
   const terminal = new terminal_control();
 
   terminal.terminal.on("key", (name: string) => {
     if (terminalStatus.grabStatus == EterminalStatus.ON_MENU) return;
 
-    //remove last character
     if (name === "BACKSPACE") {
-      eraseText();
+      eraseText(); //remueve el ultimo caracter
     } else if (name === "CTRL_C") {
-      quitApp();
+      quitApp(); // sale de la aplicacion
     } else if (name === "ENTER") {
-      sendMsg();
+      sendMsg(); //envia el mensaje
     } else {
+      //agrega el caracter al texto de la instancia del terminal
       terminal.text += name;
       terminal.terminal.moveTo(terminal.cursorX, terminal.cursorY).white(terminal.text);
     }

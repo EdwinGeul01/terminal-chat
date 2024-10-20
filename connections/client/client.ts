@@ -6,40 +6,44 @@ import { terminal_control } from "../../modules/terminal/terminal-instance/termi
 
  const QUANTITY_OF_MSG_DISPLAYED = 12;
 
-// Función para conectarse al servidor
-  let clientSocket:Socket;
+let clientSocket:Socket;
+
+//conexion al servidor
 function connectToServer(IpRoom: string = "localhost") {
 
-  // Conéctate al servidor Socket.io en localhost:3000
-  clientSocket = io(`http://${IpRoom}:${appConfig.port}`); // Asegúrate de que la URL sea correcta
-
-  // Cuando el cliente se conecta
+  // socket del cliente al servidor
+  clientSocket = io(`http://${IpRoom}:${appConfig.port}`); 
   clientSocket.on("connect", () => {
   });
 
-  // Escuchar mensajes desde el servidor (si tienes algún evento personalizado)
+
+  //al recibir un mensaje
   clientSocket.on("message", (data) => {
 
-  const terminal = new terminal_control();
+
+   const terminal = new terminal_control();
   if (terminalStatus.grabStatus == EterminalStatus.ON_MENU) return;
   terminal.last10Messages.push(data);
 
   //send message
   const posyInit = 9;
 
+  // si hay mas de 12 mensajes, se elimina el primero
   if (terminal.last10Messages.length > QUANTITY_OF_MSG_DISPLAYED) {
     terminal.last10Messages.shift();
   }
 
+  // se imprimen los mensajes
   for (let i = terminal.last10Messages.length - 1; i >= 0; i--) {
     terminal.terminal.moveTo(2, posyInit + i).blue(terminal.last10Messages[i]);
   }
 
+  //mueve el cursor a la posicion de escritura
   terminal.terminal.moveTo(terminal.cursorX, terminal.cursorY).white(terminal.text);
 
   });
 
-  // Manejar la desconexión
+  //al desconectarse del servidor  
   clientSocket.on("disconnect", () => {
     console.log("Desconectado del servidor");
   });

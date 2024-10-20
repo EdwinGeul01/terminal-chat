@@ -5,8 +5,6 @@ import { appConfig } from "../../config/config";
 
 // Instancia de Express
 const app = express();
-
-// Crea el servidor HTTP y lo compartes con Express y Socket.io
 const httpServer = createServer(app);
 const io = new Server(httpServer); // Usa el mismo servidor HTTP
 
@@ -20,13 +18,14 @@ function startServer() {
   // Conexión de Socket.io
   io.on("connection", (socket: Socket) => {
 
-    // Puedes emitir eventos o escuchar eventos del cliente aquí
+    // escucha de eventos  del cliente
+
+
     socket.on("disconnect", () => {
       console.log("A user disconnected", socket.id);
     });
 
     socket.on("message", (data) => {
-      // Puedes emitir eventos a todos los clientes conectados
       io.emit("message", data);
     });
 

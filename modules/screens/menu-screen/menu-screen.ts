@@ -3,10 +3,10 @@ import { terminal_control } from "../../terminal/terminal-instance/terminal-inst
 import { chatScreen } from "../chat-screen/chat-screen";
 import { enterRooomScreen } from "../enter-room-screen/enter-room-screen";
 
-//options for the screen main
+//opciones del menu principal
 const mainMenuOptions = ["Create new Room", "Join to Room", "Exit"];
 
-//actions to be taken when the user selects an option
+// acciones a realizar segun la opcion seleccionada
 function responseHandler(error: any, response: Terminal.SingleColumnMenuOptions) {
   const terminalControl = new terminal_control();
   const terminal = terminalControl.terminal;
@@ -40,7 +40,6 @@ function drawMainMenu() {
   }
 
   drawTitle();
-  //drawing the menu options
 
   terminal.singleColumnMenu(mainMenuOptions, responseHandler);
 }

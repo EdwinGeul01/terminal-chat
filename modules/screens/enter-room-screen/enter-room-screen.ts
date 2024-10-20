@@ -11,6 +11,7 @@ function enterRooomScreen() {
   terminalControl.cursorX = 15;
   terminalControl.cursorY = 1;
 
+  // solicita la ip de la sala donde se desea ingresar
   terminal.green("Enter room Ip: ");
   terminal.inputField({}, (error, input) => {
     chatScreen(input);
