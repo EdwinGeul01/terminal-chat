@@ -1,42 +1,23 @@
-import { Terminal } from "terminal-kit";
-import { EterminalStatus, terminalStatus } from "../global/status";
-import terminal from "../terminal";
+import { connectToServer } from "../../../client/create-client-connection/create-client-connection";
+import { startServer } from "../../../server/server";
+import { EterminalStatus, terminalStatus } from "../../terminal/global/status";
+import { terminal_control } from "../../terminal/terminal-instance/terminal-instance";
 import ip from "ip";
 
-/**
- * Draw the main menu
- */
-function drawMainMenu() {
-  function drawTitle() {
-    terminal.white("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
-    terminal.white("┃                                       ┃\n");
-    terminal.white("┃  Welcome to the terminal chat app     ┃\n");
-    terminal.white("┃                                       ┃\n");
-    terminal.white("└───────────────────────────────────────┘\n");
+export function chatScreen(IpRoom?: string) {
+  terminalStatus.grabStatus = EterminalStatus.LISTENING;
+  console.clear();
+  if (!IpRoom) {
+    startServer();
   }
-  drawTitle();
-  //drawing the menu options
+  connectToServer(IpRoom);
 
-  const mainMenuOptions = ["Create new Room", "Join to Room", "Exit"];
+  const terminalControl = new terminal_control();
+  const terminal = terminalControl.terminal;
 
-  function responseHandler(error: any, response: Terminal.SingleColumnMenuOptions) {
-    terminalStatus.grabStatus = EterminalStatus.LISTENING;
-    if (response.selectedIndex === 0) {
-      console.clear();
-      drawChatLog();
-      terminal.moveTo(1, 25).green(">");
-    } else if (response.selectedIndex === 1) {
-      terminal.green("Enter the Ip Room : \n");
-    } else if (response.selectedIndex === 2) {
-      terminal.green("\n");
-      process.exit();
-    }
-  }
+  terminalControl.cursorX = 2;
+  terminalControl.cursorY = 25;
 
-  terminal.singleColumnMenu(mainMenuOptions, responseHandler);
-}
-
-function drawChatLog() {
   const localIp = ip.address();
 
   terminal.white("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
@@ -59,6 +40,6 @@ function drawChatLog() {
   terminal.white("┃                                                                                          ┃\n");
   terminal.white("┃                                                                                          ┃\n");
   terminal.white("└──────────────────────────────────────────────────────────────────────────────────────────┘\n");
-}
 
-export { drawMainMenu, drawChatLog };
+  terminal.moveTo(1, 25).green(">");
+}
