@@ -18,14 +18,14 @@ export function chatScreen(IpRoom?: string) {
   terminalControl.cursorX = 2;
   terminalControl.cursorY = 25;
 
-  const localIp = ip.address();
+  if (!IpRoom) IpRoom = ip.address();
 
   terminal.white("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
   terminal.white("┃                                       ┃\n");
   terminal.white("┃  Welcome to the terminal chat app     ┃\n");
   terminal.white("┃                                       ┃\n");
   terminal.white("└───────────────────────────────────────┘\n");
-  terminal.white("Your Ip is: " + localIp + "          \n");
+  terminal.white("IP del Room: " + IpRoom + "          \n");
   terminal.white("\n┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
   terminal.white("┃                                                                                          ┃\n");
   terminal.white("┃                                                                                          ┃\n");
