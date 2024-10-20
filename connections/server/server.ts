@@ -1,7 +1,7 @@
 import express from "express";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
-import { appConfig } from "../config/config";
+import { appConfig } from "../../config/config";
 
 // Instancia de Express
 const app = express();

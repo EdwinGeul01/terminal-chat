@@ -1,4 +1,4 @@
-import { clientSocket } from "../../../../client/create-client-connection/create-client-connection";
+import { clientSocket } from "../../../../connections/client/client";
 import { terminal_control } from "../../terminal-instance/terminal-instance";
 
 export function sendMsg() {

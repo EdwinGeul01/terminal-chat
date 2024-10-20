@@ -1,5 +1,5 @@
-import { connectToServer } from "../../../client/create-client-connection/create-client-connection";
-import { startServer } from "../../../server/server";
+import { connectToServer } from "../../../connections/client/client";
+import { startServer } from "../../../connections/server/server";
 import { EterminalStatus, terminalStatus } from "../../terminal/global/status";
 import { terminal_control } from "../../terminal/terminal-instance/terminal-instance";
 import ip from "ip";
